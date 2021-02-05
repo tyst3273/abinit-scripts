@@ -1,0 +1,15 @@
+Idea:
+
+compute lindhard function and phonon dispersions for different smearings. this will show fermi surface nesting effects on the phonons. if softening is due to a kohn anomaly, then the lindhard function should peak at the wavevector. if the lindhard function is independent of smearing at a given wavevector where the phonon is soft, the softening is probably not due to nesting. it is probably due to large el-ph matrix element.
+
+
+gs_* dir contains very well converged potential restart file on a 48x48x40 kpt grid.
+
+info_* was used to produce a 120x120x100 kpt grid without symmetry. These kpt will be used to compute eigenvalues on this grid in the full bz for calculating the lindhard function. can probably reduce the number of k-points with symmetry, but then i dont know how to unfold to arbitrart scattering vector
+
+run_* dirs will be used to consequitevely compute different chunks of the 120x120x100 eigenvalues.
+
+nscf_ebands was used to compute ebands from the potential and compare to refs. it looks gooood. 
+
+
+

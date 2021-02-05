@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rm log err __ABI* *.abo* *o_*

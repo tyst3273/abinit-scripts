@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+import numpy as np
+import sys 
+import os
+import matplotlib.pyplot as plt
+
+if len(sys.argv) != 2:
+    print('\nERROR: must provide an ABINIT _DOS_ file\n')
+    exit()
+else:
+    infile = sys.argv[1]
+if not os.path.exists(infile):
+    print('\nERROR: file \'{}\' not found\n'.format(infile))
+    exit()
+
+
+dos = np.loadtxt(infile)
+
+### creat a figure, set its size
+fig, ax = plt.subplots()
+fig.set_size_inches(8,4,forward=True)
+fig.tight_layout(pad=2.5)
+
+#ax.plot(dos[:,0],dos[:,0],label='l=0',ls='-',lw='2',color='k')
+ax.plot(dos[:,0],dos[:,1],label='l=1',ls='-',lw='2',color='r')
+ax.plot(dos[:,0],dos[:,2],label='l=2',ls='-',lw='2',color='g')
+#ax.plot(dos[:,0],dos[:,3],label='l=3',ls='-',lw='2',color='b')
+#ax.plot(dos[:,0],dos[:,4],label='l=4',ls='-',lw='2',color='m')
+
+# configure the plot
+for axis in ['top','bottom','left','right']:
+  ax.spines[axis].set_linewidth(1.1)
+
+ax.set_ylim(0,10)
+ax.set_xlim(-1,2)
+
+#ax.set_xticks(np.linspace(-1,1,9))
+
+ax.minorticks_on()
+ax.tick_params(which='both', width=1, labelsize='x-large')
+ax.tick_params(which='major', length=5)
+ax.tick_params(which='minor', length=3, color='k')
+
+#ax.set_ylabel(r'y=$x^2$',labelpad=-2.0,fontweight='normal',fontsize='x-large')
+#ax.set_xlabel('x',labelpad=1.0,fontweight='normal',fontsize='x-large')
+
+ax.legend(frameon=False,ncol=2,prop={'size':'large'})
+#fig.suptitle('matplotlib example',y=0.97,fontsize='x-large')
+
+#plt.savefig('example.png',format='png',dpi=300,bbox_inches='tight')
+
+plt.show()
+

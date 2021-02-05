@@ -1,0 +1,71 @@
+### general
+ndtset       1 
+autoparal    1
+
+### i/o
+#prtvol      -1
+prtposcar    1
+prtwf        1
+prtden       1
+prteig       1
+#getwfk      -1
+#getden      -1
+pp_dirpath  "/home/ty/pseudo/abi/JTH-PBE-atomicdata-1.1/ATOMICDATA/"
+pseudos     "Mg.GGA_PBE-JTH.xml,B.GGA_PBE-JTH.xml"
+
+### geometry optimization
+#ionmov       22
+#optcell      2
+#ntime        20
+#tolmxf       1e-6
+#ecutsm       0.5
+#dilatmx      1.15
+
+### lattice 
+ntypat       2
+natom        3
+typat        1 2 2
+znucl        12 5
+acell        3.07552605413 3.07552605413 3.52685521480 Angstr
+rprim        1.00000000000 0.00000000000 0.00000000000
+             0.50000000000 0.86602540378 0.00000000000
+             0.00000000000 0.00000000000 1.00000000000
+xred         0.00000000000 0.00000000000 0.00000000000
+            -0.33333333333 0.66666666667 0.50000000000
+             0.33333333333 0.33333333333 0.50000000000
+
+### electrons
+nband        20
+nspden       1
+nsppol       1
+spinat       9*0
+
+### kpoints
+ngkpt        48 48 40 #24 24 20
+nshiftk      1
+shiftk       0 0 0
+
+### scf
+nstep        100
+ecut         650 eV
+pawecutdg    1400 eV
+tolvrs       1e-16
+occopt       3 
+tsmear       0.05 eV
+
+# 0.05~600 K
+# 0.1~1200 K
+# 0.2~2300 K
+# 0.4~4600 K
+
+
+
+
+
+
+
+
+
+
+
+

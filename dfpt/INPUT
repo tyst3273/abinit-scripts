@@ -1,0 +1,77 @@
+### Input parameters for Abinit DFPT calculation. Parallelize across q-points instead of performing a single run.
+### Fill in the fields below then run Create_Abinit_Input (with appropriate lines uncommented) to produce the 
+### directories and files for the DFPT calculations. 
+
+
+NUM_PROC    = 4
+
+EFIELD      = F
+
+NGQPT       = 6 6 6
+NUM_QPOINTS = 16
+QPOINTS     = 0.00000000E+00  0.00000000E+00  0.00000000E+00
+                       1.66666667E-01  0.00000000E+00  0.00000000E+00
+                       3.33333333E-01  0.00000000E+00  0.00000000E+00
+                       5.00000000E-01  0.00000000E+00  0.00000000E+00
+                       1.66666667E-01  1.66666667E-01  0.00000000E+00
+                       3.33333333E-01  1.66666667E-01  0.00000000E+00
+                       5.00000000E-01  1.66666667E-01  0.00000000E+00
+                      -3.33333333E-01  1.66666667E-01  0.00000000E+00
+                      -1.66666667E-01  1.66666667E-01  0.00000000E+00
+                       3.33333333E-01  3.33333333E-01  0.00000000E+00
+                       5.00000000E-01  3.33333333E-01  0.00000000E+00
+                      -3.33333333E-01  3.33333333E-01  0.00000000E+00
+                       5.00000000E-01  5.00000000E-01  0.00000000E+00
+                       5.00000000E-01  3.33333333E-01  1.66666667E-01
+                      -3.33333333E-01  3.33333333E-01  1.66666667E-01
+                      -3.33333333E-01  5.00000000E-01  1.66666667E-01
+
+GS_TOLVRS   = 1.0d-16
+PERT_TOLVRS = 1.0d-12
+NSCF_TOLWFR = 1.0d-24
+NLINE       = 8
+
+IS_GGA      = F
+PP_DIRPATH  = "/home/ty/pseudo/abi/JTH-LDA-atomicdata-1.1/ATOMICDATA/"
+PSEUDOS     = "Al.LDA_PW-JTH.xml"
+NTYPAT      = 1
+NATOM       = 1
+TYPAT       = 1  
+ZNUCL       = 13
+ACELL       = 1.991 1.991 1.991 Angstr
+RPRIM       = 0.0 1.0 1.0
+              1.0 0.0 1.0
+              1.0 1.0 0.0 
+XRED        = 0.00 0.00 0.00
+
+NBAND       = 8
+NSPPOL      = 1
+NSPDEN      = 1
+SPINAT      = 3*0
+
+
+NGFFT       = 24 24 24
+NGFFTDG     = 30 30 30
+
+
+NGKPT       = 20 20 20
+NSHIFTK	    = 1 
+SHIFTK      = 0 0 0
+
+
+ECUT        = 500 eV
+PAWECUTDG   = 1000 eV
+NSTEP       = 150
+OCCOPT      = 3
+TSMEAR      = 600 K
+
+
+# put any extra stuff that should go in the input file below the word EXTRA. 
+# Dont add any blank lines
+# useful for LDA+U or SOC calculations, etc.
+EXTRA      
+
+
+              
+
+
