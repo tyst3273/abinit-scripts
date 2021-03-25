@@ -27,6 +27,9 @@ class workflow:
                 if tmp[0].strip() == 'NUM_PROC':
                     self.num_proc = int(tmp[1].strip())
 
+                if tmp[0].strip() == 'ABI_VERSION':
+                    self.abi_version = tmp[1].strip()
+
                 if tmp[0].strip() == 'NGQPT':
                     self.ngqpt = tmp[1].strip()
                 if tmp[0].strip() == 'NUM_QPOINTS':
@@ -46,12 +49,14 @@ class workflow:
                     self.nscf_tolwfr = tmp[1].strip()
                 if tmp[0].strip() == 'NLINE':
                     self.nline = tmp[1].strip()
+    
 
                 if tmp[0].strip() == 'IS_GGA':
                     if tmp[1].strip() == 'T':
                         self.is_gga = True
                     else:
                         self.is_gga = False
+
                 if tmp[0].strip() == 'PP_DIRPATH':
                     self.pp_dirpath = tmp[1].strip()
                 if tmp[0].strip() == 'PSEUDOS':
@@ -198,7 +203,7 @@ class workflow:
             gamma_file_text = gamma_file_text + ('getwfk_filepath     \"../ground_state/gso_DS1_WFK\"\n' #\"../ground_state/gs.o_DS1_WFK\"\n'
                                                  'getden_filepath     \"../ground_state/gso_DS1_DEN\"\n' #\"../ground_state/gs.o_DS1_DEN\"\n'
                                                  'prtwf               1\n'
-                                                 'prtden              0\n\n'
+                                                 'prtden              1\n\n'
                                                  'ngfft               {}\n'
                                                  'ngfftdg             {}\n\n'
                                                  'kptopt              2\n'
@@ -261,7 +266,7 @@ class workflow:
             tmp = tmp+('nqpt                1\n'
                        'qpt                 {} {} {}\n'
                        'prtwf               1\n'
-                       'prtden              0\n\n'
+                       'prtden              1\n\n'
                        'ngfft               {}\n'
                        'ngfftdg             {}\n\n'
                        'kptopt              3\n\n'
@@ -308,9 +313,9 @@ class workflow:
                 mrgddb.write('phonons on {} {} {} mesh\n'.format(self.ngqpt.split()[0],
                     self.ngqpt.split()[1],self.ngqpt.split()[2]))
                 mrgddb.write('{}\n'.format(self.num_qpoints+1))
-                mrgddb.write('ground_state/gs.o_DS1_DDB\n')
+                mrgddb.write('ground_state/gso_DS1_DDB\n')
                 for q in range(self.num_qpoints):
-                    mrgddb.write('{}/run_{}.o_DS2_DDB\n'.format(q,q))
+                    mrgddb.write('{}/run_{}o_DS2_DDB\n'.format(q,q))
 
         else:
             with open('mrgddb.in','w') as mrgddb:
@@ -363,12 +368,12 @@ class workflow:
         with open('run_jobs.py','w') as fout:
             fout.write('import os\n\n')
             fout.write('num_qpoints = {}\n\n'.format(self.num_qpoints))
-            fout.write(f'os.system(\'cd ground_state && mpirun -np {self.num_proc:g} /home/ty/program_files/abinit-9.2.2/src/98_main/abinit'
+            fout.write(f'os.system(\'cd ground_state && mpirun -np {self.num_proc:g} /home/ty/program_files/abinit-{self.abi_version}/src/98_main/abinit'
                     ' *.abi > log 2> err && cd ../\')\n'
                     'for i in range(num_qpoints):\n'
-                    f'\tos.system(\'cd {{}} && mpirun -np {self.num_proc:g} /home/ty/program_files/abinit-9.2.2/src/98_main/abinit'
-                    ' *.abi > log 2> err && cd ../\'.format(i))\n'
-                    'os.system(\'/home/ty/program_files/abinit-9.2.2/src/98_main/mrgddb < mrgddb.in > mrgddb_log\')')
+                    f'\tos.system(\'cd {{}} && mpirun -np {self.num_proc:g} /home/ty/program_files/abinit-{self.abi_version}/src/98_main/abinit'
+                    ' *.abi > log 2> err && rm *WF* && cd ../\'.format(i))\n'
+                    f'os.system(\'/home/ty/program_files/abinit-{self.abi_version}/src/98_main/mrgddb < mrgddb.in > mrgddb_log\')')
 
 
     def write_eagle_run_script(self):

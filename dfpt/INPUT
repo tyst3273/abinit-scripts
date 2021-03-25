@@ -2,68 +2,64 @@
 ### Fill in the fields below then run Create_Abinit_Input (with appropriate lines uncommented) to produce the 
 ### directories and files for the DFPT calculations. 
 
+ABI_VERSION = 9.4.1
 
-NUM_PROC    = 4
+NUM_PROC    = 16
 
 EFIELD      = F
 
-NGQPT       = 6 6 6
-NUM_QPOINTS = 16
+NGQPT       = 4 4 4
+NUM_QPOINTS = 8
 QPOINTS     = 0.00000000E+00  0.00000000E+00  0.00000000E+00
-                       1.66666667E-01  0.00000000E+00  0.00000000E+00
-                       3.33333333E-01  0.00000000E+00  0.00000000E+00
+                       2.50000000E-01  0.00000000E+00  0.00000000E+00
                        5.00000000E-01  0.00000000E+00  0.00000000E+00
-                       1.66666667E-01  1.66666667E-01  0.00000000E+00
-                       3.33333333E-01  1.66666667E-01  0.00000000E+00
-                       5.00000000E-01  1.66666667E-01  0.00000000E+00
-                      -3.33333333E-01  1.66666667E-01  0.00000000E+00
-                      -1.66666667E-01  1.66666667E-01  0.00000000E+00
-                       3.33333333E-01  3.33333333E-01  0.00000000E+00
-                       5.00000000E-01  3.33333333E-01  0.00000000E+00
-                      -3.33333333E-01  3.33333333E-01  0.00000000E+00
+                       2.50000000E-01  2.50000000E-01  0.00000000E+00
+                       5.00000000E-01  2.50000000E-01  0.00000000E+00
+                      -2.50000000E-01  2.50000000E-01  0.00000000E+00
                        5.00000000E-01  5.00000000E-01  0.00000000E+00
-                       5.00000000E-01  3.33333333E-01  1.66666667E-01
-                      -3.33333333E-01  3.33333333E-01  1.66666667E-01
-                      -3.33333333E-01  5.00000000E-01  1.66666667E-01
+                      -2.50000000E-01  5.00000000E-01  2.50000000E-01
+ 
 
-GS_TOLVRS   = 1.0d-16
-PERT_TOLVRS = 1.0d-12
-NSCF_TOLWFR = 1.0d-24
-NLINE       = 8
 
-IS_GGA      = F
-PP_DIRPATH  = "/home/ty/pseudo/abi/JTH-LDA-atomicdata-1.1/ATOMICDATA/"
-PSEUDOS     = "Al.LDA_PW-JTH.xml"
+GS_TOLVRS   = 1.0d-10
+PERT_TOLVRS = 1.0d-10
+NSCF_TOLWFR = 1.0d-12
+NLINE       = 6
+
+IS_GGA      = T
+
+PP_DIRPATH  = "/home/ty/pseudo/abi/nc-sr-04_pbe_standard_psp8/"
+PSEUDOS     = "Al.psp8"
 NTYPAT      = 1
 NATOM       = 1
-TYPAT       = 1  
+TYPAT       = 1   
 ZNUCL       = 13
-ACELL       = 1.991 1.991 1.991 Angstr
-RPRIM       = 0.0 1.0 1.0
-              1.0 0.0 1.0
-              1.0 1.0 0.0 
-XRED        = 0.00 0.00 0.00
+ACELL       = 2.0182 2.0182 2.0182 Angstr
+RPRIM       = 0.0000 1.0000 1.0000
+              1.0000 0.0000 1.0000
+              1.0000 1.0000 0.0000
+XRED        = 0.0000 0.0000 0.0000
 
-NBAND       = 8
+NBAND       = 6
 NSPPOL      = 1
 NSPDEN      = 1
 SPINAT      = 3*0
 
 
 NGFFT       = 24 24 24
-NGFFTDG     = 30 30 30
+NGFFTDG     = 40 40 45
 
 
-NGKPT       = 20 20 20
+NGKPT       = 12 12 12
 NSHIFTK	    = 1 
 SHIFTK      = 0 0 0
 
 
-ECUT        = 500 eV
-PAWECUTDG   = 1000 eV
+ECUT        = 400 eV
+PAWECUTDG   = 1400 eV
 NSTEP       = 150
 OCCOPT      = 3
-TSMEAR      = 600 K
+TSMEAR      = 500 K
 
 
 # put any extra stuff that should go in the input file below the word EXTRA. 
