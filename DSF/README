@@ -1,0 +1,5 @@
+some code to calculate inelastic neutron dynamic structure factors from abinit calculations. 
+
+note, this code is broken. would be cool to include this in Abinit though. I wish I knew Fortran ...
+
+
